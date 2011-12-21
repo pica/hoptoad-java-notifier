@@ -1,21 +1,21 @@
-Airbrake Notifier for Java
-==========================
-
-A fork of Luca Marrocco's [hoptoad notifier](http://code.google.com/p/hoptoad/).
-
-Licensed under the Apache License, Version 2.0.
-
-
-Code Changes
-------------
-* endpoint configuration property added. Defaults to new API end point (airbrake.io/notifier_api/v2/notices).
-* secure configuration property added. Defaults to false.
-
+Hoptoad Notifier for Java
+==================================
 
 Example Airbrake Appender log4j.xml
 -----------------------------------
 
-    <appender name="AIRBRAKE" class="hoptoad.HoptoadAppender">
+    log4j.appender.HOPTOAD=hoptoad.HoptoadAppender
+    log4j.appender.HOPTOAD.api_key=YOUR_API_KEY_HERE
+    log4j.appender.HOPTOAD.enabled=true
+    log4j.appender.HOPTOAD.env=development
+    log4j.appender.HOPTOAD.endpoint=airbrake.io/notifier_api/v2/notices
+    log4j.appender.HOPTOAD.secure=false
+
+
+Example Hoptoad Appender log4j.xml
+-----------------------------------
+
+    <appender name="HOPTOAD" class="hoptoad.HoptoadAppender">
         <param name="api_key" value="YOUR_API_KEY_HERE"/>
         <param name="env" value="production"/>
         <param name="enabled" value="true"/>

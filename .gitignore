@@ -1,3 +1,8 @@
 .idea/
+*.swp
+target
+.DS_Store
+*.ipr
+*.iws
 *.iml
-target/
+gen
