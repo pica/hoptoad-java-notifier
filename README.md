@@ -1,7 +1,7 @@
 Hoptoad Notifier for Java
 ==================================
 
-Example Airbrake Appender log4j.xml
+Example Airbrake Appender log4j.properties
 -----------------------------------
 
     log4j.appender.HOPTOAD=hoptoad.HoptoadAppender
