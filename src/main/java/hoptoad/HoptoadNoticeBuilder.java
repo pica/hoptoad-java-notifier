@@ -130,7 +130,11 @@ public class HoptoadNoticeBuilder {
 	}
 
 	private void errorClass(Throwable throwable) {
-		this.errorClass = throwable.getClass().getName();
+        Throwable cause = throwable;
+        while(cause.getCause() != null) {
+            cause = cause.getCause();
+        }
+		this.errorClass = cause.getClass().getName();
 		if (errorMessage == null || errorMessage.trim().isEmpty()) {
 			errorMessage = '[' + throwable.getClass().toString() + ']';
 		}

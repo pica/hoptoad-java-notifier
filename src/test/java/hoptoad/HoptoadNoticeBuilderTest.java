@@ -15,8 +15,10 @@ public class HoptoadNoticeBuilderTest {
 	}
 
 	@Test
-	public void testErrorClass() {
-		HoptoadNoticeBuilder builder = new HoptoadNoticeBuilder("apiKey", new RuntimeException("errorMessage"));
-		assertTrue(builder.errorClassIs("java.lang.RuntimeException"));
+	public void testErrorClass_nestedExceptions_returnsBaseExceptionClass() {
+        Throwable ex1 = new ArrayStoreException();
+        Throwable ex2 = new RuntimeException("other message", ex1);
+        HoptoadNoticeBuilder builder = new HoptoadNoticeBuilder("apiKey", new RuntimeException("errorMessage", ex2));
+		assertTrue(builder.errorClassIs("java.lang.ArrayStoreException"));
 	}
 }
