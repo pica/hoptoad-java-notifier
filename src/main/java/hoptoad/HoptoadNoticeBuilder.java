@@ -4,6 +4,8 @@
 
 package hoptoad;
 
+import org.apache.commons.lang.StringUtils;
+
 import static java.util.Arrays.*;
 
 import java.util.*;
@@ -135,7 +137,7 @@ public class HoptoadNoticeBuilder {
             cause = cause.getCause();
         }
 		this.errorClass = cause.getClass().getName();
-		if (errorMessage == null || errorMessage.trim().isEmpty()) {
+		if (StringUtils.trimToNull(errorMessage) == null) {
 			errorMessage = '[' + throwable.getClass().toString() + ']';
 		}
 	}
