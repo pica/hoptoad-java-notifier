@@ -1,5 +1,6 @@
 Hoptoad Notifier for Java
 ==================================
+Provides a log4J appender that sends error messages to the airbrake application associated with the configured API key.
 
 Example Airbrake Appender log4j.properties
 -----------------------------------
