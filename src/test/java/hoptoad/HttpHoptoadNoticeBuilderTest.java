@@ -22,6 +22,7 @@ public class HttpHoptoadNoticeBuilderTest {
     private static final String ENVIRONMENT = "Test Environment";
     private static final String API_KEY = "Test API Key";
     private static final String URL = "https://test.example.com/path?queryString=value&a=b";
+    private static final String CONTROLLER_NAME = "testController";
 
 
     private HttpServletRequest mockRequest;
@@ -57,6 +58,14 @@ public class HttpHoptoadNoticeBuilderTest {
     }
 
     @Test
+    public void testSetsControllerName() {
+
+        HoptoadNotice notice = buildNotice(mockRequest);
+
+        assertThat(notice.component(), equalTo(CONTROLLER_NAME));
+    }
+
+    @Test
     public void testAddsRequestParameter() {
         final String parameterName = "param1";
         final String parameterValue = "value1";
@@ -87,6 +96,6 @@ public class HttpHoptoadNoticeBuilderTest {
     }
 
     private HoptoadNotice buildNotice(HttpServletRequest request) {
-        return new HttpHoptoadNoticeBuilder(API_KEY, mock(Backtrace.class), EXCEPTION, ENVIRONMENT, request).newNotice();
+        return new HttpHoptoadNoticeBuilder(API_KEY, mock(Backtrace.class), EXCEPTION, ENVIRONMENT, request, CONTROLLER_NAME).newNotice();
     }
 }

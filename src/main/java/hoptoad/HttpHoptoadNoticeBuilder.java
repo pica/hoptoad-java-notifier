@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class HttpHoptoadNoticeBuilder extends HoptoadNoticeBuilder {
 
-    public HttpHoptoadNoticeBuilder(final String apiKey, final Backtrace backtraceBuilder, final Throwable throwable, final String env, HttpServletRequest request) {
+    public HttpHoptoadNoticeBuilder(final String apiKey, final Backtrace backtraceBuilder, final Throwable throwable, final String env, HttpServletRequest request, String controllerName) {
         super(apiKey, backtraceBuilder, throwable, env);
 
-        setRequest(request.getRequestURL().toString(), "");
+        setRequest(request.getRequestURL().toString(), controllerName);
         setParameters(request.getParameterMap());
         setSession(request.getSession());
     }
