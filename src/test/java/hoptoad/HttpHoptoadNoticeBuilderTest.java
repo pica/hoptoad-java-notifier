@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -50,7 +51,7 @@ public class HttpHoptoadNoticeBuilderTest {
     }
 
     @Test
-    public void testSetsRequestUrl() {
+    public void testConstructor_setsRequestUrl() {
 
         HoptoadNotice notice = buildNotice(mockRequest);
 
@@ -58,7 +59,7 @@ public class HttpHoptoadNoticeBuilderTest {
     }
 
     @Test
-    public void testSetsControllerName() {
+    public void testConstructor_setsControllerName() {
 
         HoptoadNotice notice = buildNotice(mockRequest);
 
@@ -66,7 +67,7 @@ public class HttpHoptoadNoticeBuilderTest {
     }
 
     @Test
-    public void testAddsRequestParameter() {
+    public void testConstructor_addsRequestParameter() {
         final String parameterName = "param1";
         final String parameterValue = "value1";
 
@@ -78,7 +79,7 @@ public class HttpHoptoadNoticeBuilderTest {
     }
 
     @Test
-    public void testAddsSessionSessionAttributes() {
+    public void testConstructor_addsSessionSessionAttributes() {
 
         final String sessionName1 = "name1";
         final String sessionValue1 = "value1";
@@ -93,6 +94,26 @@ public class HttpHoptoadNoticeBuilderTest {
 
         assertThat((String) notice.session().get(sessionName1), equalTo(sessionValue1));
         assertThat((String) notice.session().get(sessionName2), equalTo(sessionValue2));
+    }
+
+    @Test
+    public void testConstructor_addsHeadersToEnv() {
+
+        final String header1Name = "header1";
+        final String header2Name = "header2";
+
+        final String header1Value = "header1value";
+        final String header2Value = "header2value";
+
+        List<String> headers = Arrays.asList(header1Name, header2Name);
+        when(mockRequest.getHeaderNames()).thenReturn( new org.apache.commons.collections.iterators.IteratorEnumeration(headers.iterator()));
+        when(mockRequest.getHeader(header1Name)).thenReturn(header1Value);
+        when(mockRequest.getHeader(header2Name)).thenReturn(header2Value);
+
+        HoptoadNotice notice = buildNotice(mockRequest);
+
+        assertThat((String) notice.environment().get("[HttpHeader] " + header1Name), equalTo(header1Value));
+        assertThat((String) notice.environment().get("[HttpHeader] " + header2Name), equalTo(header2Value));
     }
 
     private HoptoadNotice buildNotice(HttpServletRequest request) {
