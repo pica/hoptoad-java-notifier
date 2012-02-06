@@ -4,18 +4,29 @@
 
 package hoptoad;
 
-import static hoptoad.Exceptions.*;
-import static hoptoad.Slurp.*;
-import static java.util.Arrays.*;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.commons.logging.*;
-import org.hamcrest.*;
-import org.junit.*;
+import static hoptoad.Exceptions.ERROR_MESSAGE;
+import static hoptoad.Exceptions.newException;
+import static hoptoad.Slurp.read;
+import static hoptoad.Slurp.slurp;
+import static hoptoad.Slurp.strings;
+import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
 
+@Ignore
 public class HoptoadNotifierTest {
 
 	public static final String API_KEY = "a603290b07eab460795acf7001558510";
