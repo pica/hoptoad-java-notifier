@@ -6,7 +6,7 @@
     <groupId>com.pica</groupId>
     <artifactId>hoptoad-java-notifier</artifactId>
     <packaging>jar</packaging>
-    <version>2.2-SNAPSHOT</version>
+    <version>2.2</version>
     <name>Hoptoad Java Notifier</name>
 
     <parent>
